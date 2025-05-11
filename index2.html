@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>השכרת שמלות של טליה</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #fce6f5;
+      font-family: 'Heebo', Arial, sans-serif;
+      color: #432142;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+    }
+    header {
+      background: linear-gradient(110deg, #ffd3e6 80%, #d3ecef 100%);
+      padding: 45px 0 16px 0;
+      text-align: center;
+      border-bottom: 6px solid #d799ec;
+      box-shadow: 0 3px 16px #e9daf44c;
+    }
+    header h1 {
+      margin: 0 0 12px 0;
+      font-size: 2.7em;
+      color: #a131a8;
+      letter-spacing: 1px;
+    }
+    header small {
+      color: #766582;
+      font-size: 1.17em;
+      background: #fff7fc;
+      border-radius: 8px;
+      padding: 4px 18px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      margin: 45px auto 24px auto;
+      max-width: 1140px;
+      padding: 0 25px;
+    }
+    .dress {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 5px 24px 2px #debee87c;
+      text-align: center;
+      padding: 20px 17px 21px 17px;
+      transition: transform 0.12s,box-shadow 0.14s,border-bottom 0.11s;
+      border-bottom: 6px solid #e9b3db;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .dress:hover {
+      transform: translateY(-6px) scale(1.03) rotate(-0.6deg);
+      border-bottom: 6px solid #9a25ca;
+      box-shadow: 0 16px 48px 0 #d396c3c0;
+    }
+    .dress img {
+      width: 200px;
+      height: 290px;
+      object-fit: cover;
+      border-radius: 13px;
+      margin-bottom: 14px;
+      margin-top: 2px;
+      box-shadow: 0 2px 13px #ecd8e19c;
+      background: #fff0fa;
+      transition: filter 0.14s;
+    }
+    .dress h2 {
+      margin: 0 0 9px 0;
+      font-size: 1.09em;
+      color: #a131a8;
+      letter-spacing: -0.5px;
+    }
+    .dress .desc {
+      color: #6c568c;
+      font-size: 0.97em;
+      margin-bottom: 8px;
+      min-height: 34px;
+    }
+    .dress .price {
+      color: #a131a8;
+      font-weight: bold;
+      font-size: 1.05em;
+      margin-top: 6px;
+    }
+    .dress .size {
+      font-size: 0.93em;
+      color: #555388;
+      margin-bottom: 6px;
+      margin-top: 2px;
+    }
+    .contact {
+      max-width: 520px;
+      margin: 55px auto 30px auto;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 6px 30px #e2bddedb;
+      padding: 30px 18px 19px 18px;
+      text-align: center;
+      border-top: 7px solid #a131a8;
+      position: relative;
+    }
+    .contact h2 {
+      color: #a131a8;
+      margin-top: 0;
+      letter-spacing: 1px;
+      font-size: 1.35em;
+    }
+    .contact a, .contact button {
+      margin: 14px 2px 0 2px;
+      display: inline-block;
+      background: linear-gradient(97deg, #a131a8 90%, #ea50bf 100%);
+      color: #fff;
+      padding: 11px 29px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.07em;
+      cursor: pointer;
+      font-family: 'Heebo', sans-serif;
+      text-decoration: none;
+      box-shadow: 0 1px 5px #cfa9d6c6;
+      transition: background 0.13s;
+    }
+    .contact a:hover, .contact button:hover {
+      background: linear-gradient(97deg, #704b88 70%, #ea50bf 100%);
+    }
+    @media (max-width:650px) {
+      .gallery {padding:0 5px;}
+      .contact {padding:15px 2vw;}
+      .dress img {width: 92vw; max-width: 255px;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>השכרת שמלות מדהימות</h1>
+    <small>השמלות הייחודיות של טליה עכשיו להשכרה – תיראי נסיכה במחיר משתלם 🎀</small>
+  </header>
+
+  <section class="gallery">
+    <!-- שמלה 1 -->
+    <div class="dress">
+      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=cover&w=400&q=80" alt="שמלה אדומה מתוחכמת">
+      <h2>שמלה אדומה מתוחכמת</h2>
+      <div class="desc">שמלה באורך מקסי, כתפיה דקה, גזרת A עם שסע אלגנטי.</div>
+      <div class="size">מידה: S-M</div>
+      <div class="price">₪190 ל-3 ימים</div>
+    </div>
+    <!-- שמלה 2 -->
+    <div class="dress">
+      <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=cover&w=400&q=80" alt="שמלת ערב נוצצת">
+      <h2>שמלת ערב נוצצת</h2>
+      <div class="desc">שמפניה עיניים, אבני נוצץ, גב פתוח ומחמיא.</div>
+      <div class="size">מידה: M-L</div>
+      <div class="price">₪240 ל-3 ימים</div>
+    </div>
+    <!-- שמלה 3 -->
+    <div class="dress">
+      <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=cover&w=400&q=80" alt="שמלה קלאסית שחורה">
+      <h2>שמלה קלאסית שחורה</h2>
+      <div class="desc">מיני אלגנטית, שרוולים קצרים, בד גמיש במיוחד.</div>
+      <div class="size">מידה: S</div>
+      <div class="price">₪120 ל-3 ימים</div>
+    </div>
+    <!-- שמלה 4 -->
+    <div class="dress">
+      <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=cover&w=400&q=80" alt="שמלת פלאייר פוקסיה">
+      <h2>שמלת פלאייר פוקסיה</h2>
+      <div class="desc">בד משי, עיצוב מתרחב, חגורת טול מחטבת.</div>
+      <div class="size">מידה: S-M</div>
+      <div class="price">₪200 ל-3 ימים</div>
+    </div>
+    <!-- שמלה 5 -->
+    <div class="dress">
+      <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=cover&w=400&q=80" alt="שמלה כחולה מלכותית">
+      <h2>שמלה כחולה מלכותית</h2>
+      <div class="desc">בד משי, עיצוב מתרחב, חגורת טול מחטבת.</div>
+      <div class="size">מידה: S-M</div>
+      <div class="price">₪200 ל-3 ימים</div>
+    </div>
+  </section>
