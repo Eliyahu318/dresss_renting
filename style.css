@@ -1,0 +1,302 @@
+/* Font declarations from the original site */
+@font-face {
+font-family: Alegreya;
+font-weight: 400;
+font-style: normal;
+font-display: swap;
+src: url("//www.jozandco.com/cdn/fonts/alegreya/alegreya_n4.9d59d35c9865f13cc7223c9847768350c0c7301a.woff2?h1=NDhmZjEwLTQuYWNjb3VudC5teXNob3BpZnkuY29t&h2=am96YW5kY28uY29t&hmac=95722545c63d78c404506739299f053539868e1b21e5323f35aa5f7afc2e6d0d") format("woff2");
+}
+@font-face {
+font-family: Cardo;
+font-weight: 400;
+font-style: normal;
+font-display: swap;
+src: url("//www.jozandco.com/cdn/fonts/cardo/cardo_n4.8d7bdd0369840597cbb62dc8a447619701d8d34a.woff2?h1=NDhmZjEwLTQuYWNjb3VudC5teXNob3BpZnkuY29t&h2=am96YW5kY28uY29t&hmac=857009782975790e40d9198e84a201df49aa30176f3d2c2d028da02abc15e907") format("woff2");
+}
+
+/* Define CSS variables for easier font management */
+:root {
+--font-heading: 'Cardo', serif;
+--font-body: 'Alegreya', serif;
+}
+
+/* General styles */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: var(--font-body);
+background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+color: #212529;
+direction: rtl;
+line-height: 1.6;
+}
+
+.hero {
+background: linear-gradient(135deg, #000 0%, #1a1a1a 50%, #2c2c2c 100%);
+color: white;
+padding: 60px 20px 40px;
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+
+.hero::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="0.5" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="0.3" fill="white" opacity="0.08"/><circle cx="50" cy="10" r="0.4" fill="white" opacity="0.06"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+pointer-events: none;
+}
+
+.logo {
+font-family: var(--font-heading);
+font-size: 2.8rem;
+font-weight: 400;
+letter-spacing: 3px;
+margin-bottom: 10px;
+position: relative;
+z-index: 2;
+text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.logo .paris {
+font-family: var(--font-body);
+font-style: italic;
+font-size: 1rem;
+font-weight: 400;
+letter-spacing: 6px;
+margin-top: -5px;
+display: block;
+opacity: 0.9;
+}
+
+.subtitle {
+font-family: var(--font-body);
+font-size: 1.1rem;
+font-weight: 300;
+letter-spacing: 1px;
+margin-top: 15px;
+opacity: 0.85;
+position: relative;
+z-index: 2;
+}
+
+.subtitle::before,
+.subtitle::after {
+content: '✦';
+margin: 0 15px;
+opacity: 0.6;
+}
+
+.container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 40px 20px;
+}
+
+.collection-title {
+text-align: center;
+font-family: var(--font-heading);
+font-size: 2rem;
+font-weight: 400;
+color: #1a1a1a;
+margin-bottom: 30px;
+position: relative;
+}
+
+.collection-title::after {
+content: '';
+display: block;
+width: 60px;
+height: 2px;
+background: linear-gradient(90deg, #000, #666);
+margin: 10px auto;
+}
+
+.products-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 12px;
+margin-top: 30px;
+}
+
+.product-card {
+background: white;
+border-radius: 15px;
+/*overflow: hidden;*/
+overflow: visible;
+box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+position: relative;
+border: 1px solid rgba(0,0,0,0.05);
+max-width: 280px;
+margin: 0 auto;
+}
+
+/* שינוי: הוספת focus-visible לטובת נגישות (ניווט מקלדת) */
+.product-card:hover,
+.product-card:focus-visible {
+transform: translateY(-8px) scale(1.02);
+box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+outline: 2px solid #25d366; /* הוספת חיווי ויזואלי */
+outline-offset: 2px;
+}
+
+.product-image {
+width: 100%;
+height: 300px;
+object-fit: cover;
+object-position: center;
+transition: transform 0.4s ease;
+display: block;
+border-radius: 15px;
+}
+
+.product-card:hover .product-image {
+transform: scale(1.05);
+}
+
+.product-image.zoomed {
+  transform: scale(2) !important; /* יגבר על ההובר */
+  cursor: zoom-out;
+  transition: transform 0.4s ease;
+  border-radius: 15px; /* שומר על הפינות */
+  position: relative;
+  z-index: 10;
+}
+
+.product-info {
+padding: 15px;
+text-align: center;
+}
+
+.product-name {
+font-family: var(--font-heading);
+font-size: 1.1rem;
+font-weight: 400;
+color: #1a1a1a;
+margin-bottom: 8px;
+letter-spacing: 0.5px;
+line-height: 1.3;
+}
+
+.product-description {
+font-family: var(--font-body);
+color: #666;
+font-size: 1rem;
+margin-bottom: 10px;
+line-height: 1.4;
+font-weight: 400;
+}
+
+.product-details {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 15px;
+padding: 10px 0;
+border-top: 1px solid #f0f0f0;
+}
+
+.product-size {
+font-family: var(--font-body);
+font-size: 1rem;
+color: #888;
+font-weight: 500;
+}
+
+.product-price {
+font-family: var(--font-heading);
+font-size: 1.1rem;
+font-weight: 400;
+color: #1a1a1a;
+}
+
+.whatsapp-btn {
+background: linear-gradient(135deg, #25d366 0%, #20b358 100%);
+color: white;
+padding: 10px 20px;
+border: none;
+border-radius: 25px;
+font-size: 0.85rem;
+font-weight: 600;
+cursor: pointer;
+text-decoration: none;
+display: inline-flex;
+align-items: center;
+gap: 6px;
+transition: all 0.3s ease;
+box-shadow: 0 3px 12px rgba(37, 211, 102, 0.3);
+font-family: var(--font-body);
+width: 100%;
+justify-content: center;
+}
+
+/* שינוי: הוספת focus-visible לטובת נגישות (ניווט מקלדת) */
+.whatsapp-btn:hover,
+.whatsapp-btn:focus-visible {
+background: linear-gradient(135deg, #20b358 0%, #1ea04c 100%);
+transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+outline: none; /* מניעת ברירת המחדל של הדפדפן ושמירה על העיצוב הקיים */
+}
+
+.whatsapp-icon {
+width: 16px;
+height: 16px;
+filter: brightness(0) invert(1);
+}
+
+.featured-badge {
+position: absolute;
+top: 10px;
+right: 10px;
+background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+color: white;
+padding: 4px 8px;
+border-radius: 12px;
+font-size: 0.7rem;
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 0.3px;
+box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+font-family: var(--font-body);
+}
+
+footer {
+background: #1a1a1a;
+color: white;
+text-align: center;
+padding: 30px 20px;
+margin-top: 60px;
+}
+
+footer p {
+font-size: 0.9rem;
+opacity: 0.8;
+font-weight: 300;
+font-family: var(--font-body);
+}
+
+@media (max-width: 768px) {
+.logo { font-size: 2.2rem; letter-spacing: 2px; }
+.logo .paris { font-size: 0.9rem; letter-spacing: 5px; }
+.products-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; padding: 0 10px; }
+.product-card { border-radius: 12px; max-width: none; }
+.product-image { height: 180px; }
+.product-info { padding: 12px; }
+.collection-title { font-size: 1.6rem; }
+.whatsapp-btn { font-size: 0.8rem; padding: 8px 16px; }
+}
+
+@media (max-width: 480px) {
+.products-grid { grid-template-columns: 1fr; gap: 20px; }
+.product-card { max-width: 300px; }
+}
