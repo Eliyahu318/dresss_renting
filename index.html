@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JOZ & CO PARIS - קטלוג פריטים 2025</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JOZ & CO PARIS - קטלוג</title>
 
+  <!-- Fonts: Alegreya (body), Cardo (logo) -->
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;700&family=Cardo:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
 <body>
   <header class="hero">
-    <div class="logo">JOZ & CO <span class="paris">PARIS</span></div>
-    <div class="subtitle">קטלוג פריטים נבחרים</div>
+    <div class="hero-inner container">
+      <div class="logo">JOZ &amp; CO <span class="paris">PARIS</span></div>
+      <div class="subtitle">קטלוג פריטים נבחרים</div>
+    </div>
   </header>
 
-  <div class="container">
-    <div class="products-grid" id="products-grid"></div>
-  </div>
+  <main class="container">
+    <div id="products-grid" class="products-grid" aria-live="polite"></div>
+  </main>
 
-  <footer>
-    <p>JOZ & CO PARIS</p>
-    <p style="margin-top: 10px; opacity: 0.6;">מכירה פרטית</p>
+  <footer class="footer">
+    <div class="container">
+      <small>© JOZ &amp; CO PARIS</small>
+    </div>
   </footer>
 
-  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-    <symbol id="whatsapp-icon-symbol" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967..."/>
-    </symbol>
-  </svg>
-
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
-
 </html>
