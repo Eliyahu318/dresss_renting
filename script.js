@@ -17,36 +17,53 @@ function renderProducts(items) {
   grid.innerHTML = items.map(toCardHTML).join("");
 }
 
+function formatILS(n) {
+  return Number.isFinite(n) ? `₪${n}` : "";
+}
+
 function toCardHTML(p) {
   const name  = p.name ?? "";
-  const price = typeof p.price === "number" ? `₪${p.price}` : "";
+  const now   = Number(p.price);
+  const old   = Number(p.old_price ?? p.original_price);
+  const hasDiscount = Number.isFinite(now) && Number.isFinite(old) && old > now;   // ★
+
+  const priceNow = formatILS(now);
+  const priceOld = hasDiscount ? formatILS(old) : "";
+
   const size  = p.size ?? "";
   const image = p.image ?? "";
 
-  // ⇣ עדכן כאן למספר הוואטסאפ שלך (בפורמט בינלאומי ללא +)
-  const waText = encodeURIComponent(`שלום! אשמח לפרטים על "${name}" (מידה: ${size}, מחיר: ${price}).`);
-  const waLink = `https://wa.me/972000000000?text=${waText}`;
+  const waText = encodeURIComponent(`שלום! אשמח לפרטים על "${name}" (מידה: ${size}, מחיר: ${priceNow}).`);
+  const waLink = `https://wa.me/972543456073?text=${waText}`;
+
+  const priceBlock = hasDiscount
+    ? `<span class="price-wrap">
+         <span class="price"><bdi>${priceNow}</bdi></span>
+         <del class="old-price"><bdi>${priceOld}</bdi></del>
+       </span>`
+    : `<span class="price"><bdi>${priceNow}</bdi></span>`;
+
+   const saleBadge = hasDiscount ? `<div class="sale-badge" aria-label="פריט במבצע">sale</div>` : "";
 
   return `
     <article class="product-card">
-      <img class="product-image"
-           src="${image}" alt="${name}"
-           loading="lazy" draggable="false" />
+      ${saleBadge}  <!-- ★ מיקום התגית על הכרטיס -->
+      <img class="product-image" src="${image}" alt="${name}" loading="lazy" draggable="false" />
       <div class="product-content">
         <div class="product-name">${name}</div>
         <div class="product-meta">
-          <span class="price">${price}</span>
+          <span class="price-area">${priceBlock}</span>
           <span class="size">${size}</span>
         </div>
-        <a class="whatsapp-btn"
-           href="${waLink}" target="_blank" rel="noopener"
-           aria-label="לפרטים נוספים על ${name} בוואטסאפ">
-          פנייה בוואטסאפ
+        <a class="whatsapp-btn" href="${waLink}" target="_blank" rel="noopener"
+           aria-label="לפרטים על ${name} בוואטסאפ">
+          בדיקת זמינות
         </a>
       </div>
     </article>
   `;
 }
+
 
 loadProducts();
 

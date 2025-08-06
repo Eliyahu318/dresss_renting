@@ -1,20 +1,56 @@
+/* ====== 1) טעינת פונטים מקורית + fallback ====== */
+/* מקור ראשי: jozandco (עשוי לדרוש CORS פתוח מהדומיין) */
+@font-face {
+  font-family: "Alegreya";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src:
+    local("Alegreya"),
+    local("Alegreya Regular"),
+    url("//www.jozandco.com/cdn/fonts/alegreya/alegreya_n4.9d59d35c9865f13cc7223c9847768350c0c7301a.woff2?h1=NDhmZjEwLTQuYWNjb3VudC5teXNob3BpZnkuY29t&h2=am96YW5kY28uY29t&hmac=95722545c63d78c404506739299f053539868e1b21e5323f35aa5f7afc2e6d0d") format("woff2");
+}
+
+@font-face {
+  font-family: "Cardo";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src:
+    local("Cardo"),
+    local("Cardo Regular"),
+    url("//www.jozandco.com/cdn/fonts/cardo/cardo_n4.8d7bdd0369840597cbb62dc8a447619701d8d34a.woff2?h1=NDhmZjEwLTQuYWNjb3VudC5teXNob3BpZnkuY29t&h2=am96YW5kY28uY29t&hmac=857009782975790e40d9198e84a201df49aa30176f3d2c2d028da02abc15e907") format("woff2");
+}
+
+/* חלופה מדויקת במקרה של חסימת CORS:
+   מומלץ להוסיף ב-HTML:
+   <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400&family=Cardo:wght@400&display=swap" rel="stylesheet">
+*/
+
 /* ===== בסיס ===== */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; }
 
+/* משתני עיצוב + משתני פונטים (מהראשון) */
 :root{
-  --page-bg:  #ffffff;   /* רקע דף לבן לכל העמוד */
+  --page-bg:  #ffffff;
   --card-bg:  #ffffff;
   --border:   rgba(0,0,0,.06);
   --shadow-1: 0 8px 30px rgba(0,0,0,.06);
   --shadow-2: 0 16px 44px rgba(0,0,0,.10);
-  --accent:   #25d366;   /* WhatsApp green */
+  --accent:   #25d366;
+
+  /* משתני פונטים */
+  --font-heading: 'Cardo'/*, serif;*/
+  --font-body: 'Alegreya', 'Heebo', Georgia, serif;
 }
 
 body{
-  font-family: "Alegreya", "Heebo", Georgia, serif;
+  font-family: var(--font-body);
   color: #212529;
-  background: var(--page-bg); /* לבן, תואם גם ל-container */
+
+  /* 2B — אימוץ גרדיאנט גוף מהקוד הראשון */
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 }
 
 .container { width: min(1100px, 92vw); margin: 0 auto; }
@@ -27,6 +63,7 @@ body{
   overflow: hidden;
 }
 .hero::before{
+  /* שכבת היילייטים מעגלית (הייתה בקוד השני) */
   content:"";
   position:absolute; inset:0;
   background:
@@ -34,11 +71,18 @@ body{
     radial-gradient(60% 120% at -10% 80%, rgba(255,255,255,.06) 0%, transparent 60%);
   pointer-events:none;
 }
+/* 3 — שכבת grain עדינה כמו בראשון (נפרדת ל-::after) */
+.hero::after{
+  content: '';
+  position: absolute; inset: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="0.5" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="0.3" fill="white" opacity="0.08"/><circle cx="50" cy="10" r="0.4" fill="white" opacity="0.06"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  pointer-events: none;
+}
 .hero-inner{ padding: 46px 0 34px; text-align:center; }
 
-/* לוגו: Cardo */
+/* לוגו: Cardo (דרך משתנה הפונטים) */
 .logo{
-  font-family: "Cardo","Times New Roman",serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 4.2vw, 2.8rem);
   font-weight: 400;
   letter-spacing: 3px;
@@ -47,7 +91,7 @@ body{
 }
 .logo .paris{
   display:block;
-  font-family: inherit;
+  font-family: var(--font-body);
   font-style: italic;
   font-size: clamp(.9rem, 1.8vw, 1.05rem);
   font-weight: 400;
@@ -57,14 +101,22 @@ body{
 }
 
 .subtitle{
-  font-family: "Alegreya","Heebo",Georgia,serif;
+  font-family: var(--font-body);
   font-size: 1.05rem;
   font-weight: 400;
   letter-spacing: 1px;
   opacity:.85;
+  position: relative;
+  display: inline-block;
+}
+/* 3 — כוכביות צדדיות כמו בראשון */
+.subtitle::before,
+.subtitle::after{
+  content: '✦';
+  margin: 0 12px;
+  opacity: 0.6;
 }
 
-/* מובייל – שמירה על פרופורציות הלוגו */
 @media (max-width: 768px){
   .logo{ letter-spacing:2px; }
   .logo .paris{ letter-spacing:5px; }
@@ -86,6 +138,7 @@ body{
   border: 1px solid var(--border);
   box-shadow: var(--shadow-1);
   transition: transform .22s ease, box-shadow .22s ease;
+  position: relative;
 }
 .product-card:hover,
 .product-card:focus-within{
@@ -119,6 +172,50 @@ body{
 .price{ font-weight: 700; }
 .size{ font-size: .95rem; color: #6b7280; }
 
+/* עטיפה למחירים */
+.price-wrap{
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+/* מחיר נוכחי */
+.price{
+  font-weight: 700;
+  color: #1a1a1a;
+  font-family: var(--font-heading);
+}
+
+/* מחיר ישן עם רו אפור עדין */
+.old-price{
+  color: #9ca3af;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  font-weight: 400;
+  font-size: .95em;
+  font-family: var(--font-body);
+}
+
+/* תגית "מבצע" */
+.sale-badge{
+  position: absolute;
+  top: 10px;
+  right: 10px;          /* החלף ל-left אם תרצה */
+  z-index: 2;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .3px;
+  color: #fff;
+  background: linear-gradient(135deg, #ff6b6b, #ff9f43);
+  box-shadow: 0 2px 10px rgba(0,0,0,.18);
+  user-select: none;
+  pointer-events: none; /* שלא יפריע ללחיצה על הכרטיס */
+  text-shadow: 0 1px 2px rgba(0,0,0,.18);
+  font-family: var(--font-body);
+}
+
 /* ===== כפתור וואטסאפ ===== */
 .whatsapp-btn{
   margin-top: 10px;
@@ -128,12 +225,14 @@ body{
   padding: 10px 12px;
   border-radius: 10px;
   text-decoration: none;
+  font-family: var(--font-heading);
   font-weight: 700;
   border: 1px solid rgba(37,211,102,.30);
   background: rgba(37,211,102,.12);
   color: #0b3d23;
   transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
 }
+
 .whatsapp-btn:hover,
 .whatsapp-btn:focus-visible{
   background: rgba(37,211,102,.20);
